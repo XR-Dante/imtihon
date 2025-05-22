@@ -23,9 +23,25 @@ class BalancesController extends Controller
     {
         $request->validate([
             'balance' => 'required',
+//            'type' => 'required',
+//            'user_id' => 'required',
+
         ]);
-        Balance::create($request->all());
-        return redirect()->route('home')->with('success', 'Balance added successfully');
+        $balance = Balance::create([
+            'balance' => $request->balance,
+            'type'    => 'income',
+            'user_id' => auth()->id(),
+        ]);
+
+        $request->validate([
+            'balance_id' => $balance->id,
+            'user_id' => auth()->id(),
+            'balance' => $request->balance,
+            'status'  => 'income',
+        ]);
+        Transaction::create($request->all());
+
+        return redirect()->route('balances.index')->with('success', 'Balance added successfully');
     }
 
     public function show(string $id)

@@ -12,10 +12,14 @@ class Balance extends Model
     protected $fillable = [
         'balance',
         'type',
+        'user_id',
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class, 'balance_id');
     }
 }

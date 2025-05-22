@@ -33,6 +33,7 @@ class TransactionController extends Controller
         $id = $request->get('balance_id');
         $request->validate([
             'balance_id' => 'required|exists:balances,id',
+            'user_id' => 'required|exists:users,id',
             'name' => 'required|string',
             'status' => 'required|string',
             'description' => 'required|string',
