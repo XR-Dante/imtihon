@@ -11,6 +11,7 @@ class Balance extends Model
 
     protected $fillable = [
         'balance',
+        'type',
     ];
 
     public function transactions()

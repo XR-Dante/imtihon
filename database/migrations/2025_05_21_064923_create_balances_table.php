@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
             $table->decimal('balance', 10, 3);
-//            $table->enum('type', ['income'])->default('income');
+            $table->enum('type', ['income'])->default('income');
             $table->timestamps();
         });
     }

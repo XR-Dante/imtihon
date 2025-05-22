@@ -23,7 +23,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select name="status" class="form-select" required>
-                <option value="Chiqim">Chiqim</option>
+                <option value="expence">Chiqim</option>
             </select>
         </div>
 

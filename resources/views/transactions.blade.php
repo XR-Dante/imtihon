@@ -10,8 +10,8 @@
 <form action="{{ route('transactions.index') }}" method="GET">
     <select name="status" class="form-select" onchange="this.form.submit()">
         <option value="all" {{ request('status') == 'all' ? 'selected' : '' }}>All</option>
-        <option value="kirim" {{ request('status') == 'kirim' ? 'selected' : '' }}>Kirim</option>
-        <option value="chiqim" {{ request('status') == 'chiqim' ? 'selected' : '' }}>Chiqim</option>
+        <option value="income" {{ request('status') == 'income' ? 'selected' : '' }}>Income</option>
+        <option value="expence" {{ request('status') == 'expence' ? 'selected' : '' }}>Expence</option>
     </select>
 </form>
 
@@ -37,6 +37,13 @@
                 <td>{{ $item->description }}</td>
                 <td>{{ $item->balance }}</td>
                 <td>{{ $item->date }}</td>
+            </tr>
+
+        @endforeach
+        @foreach ($balance as $item)
+            <tr>
+                <td>{{ $item->balance }}</td>
+                <td>{{ $item->type }}</td>
             </tr>
 
         @endforeach
