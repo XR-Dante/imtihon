@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->foreignId('balance_id')->constrained()->cascadeOnDelete();
-            $table->enum('status', ['income','expence']);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->enum('status', ['income','expense']);
             $table->string('description');
             $table->decimal('balance', 10, 3);
             $table->date('date');

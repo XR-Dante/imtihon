@@ -21,10 +21,13 @@ class BalancesController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'balance' => 'required',
+        $validated = $request->validate([
+            'balance' => 'required|numeric',
         ]);
-        Balance::create($request->all());
+
+        $validated['user_id'] = auth()->id();
+
+        Balance::create($validated);
         return redirect()->route('home')->with('success', 'Balance added successfully');
     }
 

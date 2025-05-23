@@ -11,7 +11,7 @@
     <select name="status" class="form-select" onchange="this.form.submit()">
         <option value="all" {{ request('status') == 'all' ? 'selected' : '' }}>All</option>
         <option value="income" {{ request('status') == 'income' ? 'selected' : '' }}>Income</option>
-        <option value="expence" {{ request('status') == 'expence' ? 'selected' : '' }}>Expence</option>
+        <option value="expense" {{ request('status') == 'expense' ? 'selected' : '' }}>Expense</option>
     </select>
 </form>
 
@@ -30,20 +30,15 @@
         <tbody>
         @foreach ($transactions as $item)
             <tr>
-                <td>{{ $item->id }}</td>
-                <td>{{ $item->balance_id }}</td>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->status }}</td>
-                <td>{{ $item->description }}</td>
-                <td>{{ $item->balance }}</td>
-                <td>{{ $item->date }}</td>
+                <td style="color: red">-{{ $item->balance }}</td>
+                <td style="color: red">{{ $item->status }}</td>
             </tr>
 
         @endforeach
         @foreach ($balance as $item)
             <tr>
-                <td>{{ $item->balance }}</td>
-                <td>{{ $item->type }}</td>
+                <td style="color: green">+{{ $item->balance }}</td>
+                <td style="color: green">{{ $item->type }}</td>
             </tr>
 
         @endforeach
@@ -51,6 +46,8 @@
 
         </tbody>
     </table>
+    <a href="{{ route('balances.index') }}" class="btn btn-secondary">Home</a>
+
 </div>
 
 </body>

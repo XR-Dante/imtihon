@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
@@ -11,13 +11,19 @@ class Transaction extends Model
 
     protected $table = 'transaction';
     protected $fillable = [
-        'name',
         'balance_id',
+        'user_id',
+        'name',
         'status',
         'description',
         'balance',
         'date',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function balance()
     {

@@ -12,7 +12,6 @@
     <form action="{{ route('transactions.store') }}" method="POST">
         @csrf
 
-        {{-- Balans ID ni yashirincha uzatish --}}
         <input type="hidden" name="balance_id" value="{{ $id }}">
 
         <div class="mb-3">
@@ -23,7 +22,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select name="status" class="form-select" required>
-                <option value="expence">Chiqim</option>
+                <option value="expense">Expence</option>
             </select>
         </div>
 

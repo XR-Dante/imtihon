@@ -12,7 +12,12 @@ class Balance extends Model
     protected $fillable = [
         'balance',
         'type',
+        'user_id',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 
     public function transactions()
     {

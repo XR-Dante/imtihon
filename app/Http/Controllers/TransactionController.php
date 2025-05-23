@@ -24,21 +24,24 @@ class TransactionController extends Controller
 
     public function create(Request $request)
     {
+
         $id = $request->query('balance_id');
         return view('shopping', compact('id'));
     }
 
     public function store(Request $request)
     {
+//        dd($request->all());
         $id = $request->get('balance_id');
-        $request->validate([
+        $validated = $request->validate([
             'balance_id' => 'required|exists:balances,id',
             'name' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required|in:income,expense',
             'description' => 'required|string',
             'balance' => 'required|numeric|min:0.1',
             'date' => 'required|date',
         ]);
+        $validated['user_id'] = auth()->id();
 
         $balance = Balance::find($id);
 
@@ -53,7 +56,7 @@ class TransactionController extends Controller
         $balance->balance -= $request->balance;
         $balance->save();
 
-        $transaction = Transaction::create($request->all());
+        $transaction = Transaction::create($validated);
 
 
         return view('check', compact('transaction', 'balance'));

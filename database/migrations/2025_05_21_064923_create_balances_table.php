@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->decimal('balance', 10, 3);
             $table->enum('type', ['income'])->default('income');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

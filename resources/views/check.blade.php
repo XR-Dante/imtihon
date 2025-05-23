@@ -10,19 +10,19 @@
 <body>
 
 <div class="container mt-4">
-    <h2>Xarid Checki</h2>
+    <h2>Purchase receipt</h2>
     <div class="card">
         <div class="card-body">
             <p><strong>ID:</strong> {{ $transaction->id }}</p>
-            <p><strong>Ism:</strong> {{ $transaction->name }}</p>
-            <p><strong>Holat:</strong> {{ $transaction->status }}</p>
-            <p><strong>Izoh:</strong> {{ $transaction->description }}</p>
-            <p><strong>Summasi:</strong> {{ number_format($transaction->balance, 3) }}</p>
-            <p><strong>Sana:</strong> {{ $transaction->date }}</p>
-            <p><strong>Qoldiq:</strong> {{ $balance->balance }}</p>
+            <p><strong>Name:</strong> {{ $transaction->name }}</p>
+            <p><strong>Status:</strong> {{ $transaction->status }}</p>
+            <p><strong>Description:</strong> {{ $transaction->description }}</p>
+            <p><strong>Amount:</strong> {{ number_format($transaction->balance, 3) }}</p>
+            <p><strong>Data:</strong> {{ $transaction->date }}</p>
+            <p><strong>Residual:</strong> {{ $balance->balance }}</p>
         </div>
     </div>
-    <a href="{{ route('home') }}" class="btn btn-primary mt-3">Asosiy sahifaga qaytish</a>
+    <a href="{{ route('home') }}" class="btn btn-secondary">Back to home</a>
 </div>
 
 </body>
