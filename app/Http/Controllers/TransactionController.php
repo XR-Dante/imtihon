@@ -11,15 +11,16 @@ class TransactionController extends Controller
 {
     public function index(Request $request)
     {
+
         $status = $request->query('status');
         if($status && $status !== 'all'){
             $transactions = Transaction::where(DB::raw('LOWER(status)'), strtolower($status))->get();
-            $balance      = Balance::where(DB::raw('LOWER(type)'), strtolower($status))->get();
+//            $balance      = Balance::where(DB::raw('LOWER(type)'), strtolower($status))->get();
         }else {
-            $balance      = Balance::all();
+//            $balance      = Balance::all();
             $transactions = Transaction::all();
         }
-        return view('transactions', compact('transactions',  'status', 'balance'));
+        return view('transactions', compact('transactions',  'status'));
     }
 
     public function create(Request $request)

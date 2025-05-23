@@ -29,19 +29,26 @@
         </thead>
         <tbody>
         @foreach ($transactions as $item)
-            <tr>
-                <td style="color: red">-{{ $item->balance }}</td>
-                <td style="color: red">{{ $item->status }}</td>
-            </tr>
-
-        @endforeach
-        @foreach ($balance as $item)
+            @if($item->status === 'expense')
+                <tr>
+                    <td style="color: red">-{{ $item->balance }}</td>
+                    <td style="color: red">{{ $item->status }}</td>
+                </tr>
+            @else()
             <tr>
                 <td style="color: green">+{{ $item->balance }}</td>
-                <td style="color: green">{{ $item->type }}</td>
+                <td style="color: green">{{ $item->status }}</td>
             </tr>
 
+            @endif
         @endforeach
+
+{{--        @foreach ($balance as $item)--}}
+{{--                <tr>--}}
+{{--                    <td style="color: green">+{{ $item->balance }}</td>--}}
+{{--                    <td style="color: green">{{ $item->type }}</td>--}}
+{{--                </tr>--}}
+{{--        @endforeach--}}
 
 
         </tbody>

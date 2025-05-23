@@ -12,6 +12,8 @@
 
     <form action="{{ route('balances.store') }}" method="POST">
         @csrf
+{{--        <input type="hidden" name="balance_id" value="{{ $id }}">--}}
+
         <div class="mb-3">
             <input type="number" step="0.001" class="form-control" id="balance" name="balance" required>
         </div>

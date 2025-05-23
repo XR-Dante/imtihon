@@ -27,8 +27,24 @@ class BalancesController extends Controller
 
         $validated['user_id'] = auth()->id();
 
-        Balance::create($validated);
+        $balance  = Balance::create($validated);
+
+
+        $id =  $balance->id;
+
+
+        $transaction = $request->validate([
+            'balance' => 'required|numeric',
+        ]);
+
+        $transaction['user_id'] = auth()->id();
+        $transaction['balance_id'] = $id;
+        $transaction['status'] = 'income';
+
+
+        Transaction::create($transaction);
         return redirect()->route('home')->with('success', 'Balance added successfully');
+
     }
 
     public function show(string $id)

@@ -11,8 +11,7 @@
     <h2>Balance list</h2>
 
 
-    <a href="{{ route('balances.create') }}" class="btn btn-primary mb-3">Add Balance</a>
-    <a href="{{ route('transactions.index') }}" class="btn btn-primary mb-3">Purchase receipt</a>
+    <a href="{{ route('balances.create') }}" class="btn btn-primary mb-3">Create new card</a>
 
 
 
@@ -31,6 +30,7 @@
                 <td>
                     <a href="{{ route('balances.edit', $item->id) }}" class="btn btn-warning btn-sm">Hisobni to'ldirish</a>
                     <a href="{{ route('transactions.create') }}?balance_id={{ $item->id }}" class="btn btn-warning btn-sm">Shopping</a>
+                    <a href="{{ route('transactions.index') }}?user_id={{ $item->id }}" class="btn btn-warning btn-sm">Purchase receipt</a>
                     <form action="{{ route('balances.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')

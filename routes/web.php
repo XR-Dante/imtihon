@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [BalancesController::class, 'index'])->name('home');
-Route::resource('balances', BalancesController::class);
-Route::resource('transactions', TransactionController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [BalancesController::class, 'index'])->name('home');
+    Route::resource('balances', BalancesController::class);
+    Route::resource('transactions', TransactionController::class);
+});
