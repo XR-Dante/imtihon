@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\BalancesController;
+use App\Http\Controllers\Web\TransactionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\BalancesController;
 
 Route::get('/', function () {
     return view('welcome');

@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Service;
 
+use App\Http\Controllers\Controller;
 use App\Models\Balance;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class BalancesController extends Controller
+class BalanceService extends Controller
 {
     public function index()
     {
-        $balance = Balance::all();
-        return view('home', compact('balance'));
+        return Balance::query()->where('user_id', auth()->id())->get();
     }
 
-    public function create(Request $request)
-    {
-        return view('create');
-    }
 
     public function store(Request $request)
     {
@@ -27,7 +23,7 @@ class BalancesController extends Controller
 
         $validated['user_id'] = auth()->id();
 
-        $balance  = Balance::create($validated);
+        $balance  = Balance::query()->create($validated);
 
 
         $id =  $balance->id;
@@ -45,35 +41,33 @@ class BalancesController extends Controller
         Transaction::create($transaction);
         return redirect()->route('home')->with('success', 'Balance added successfully');
 
-    }
 
-    public function show(string $id)
-    {
-        //
     }
 
     public function edit(string $id)
     {
-        $balance = Balance::findOrFail($id);
-        return view('edit', compact('balance'));
+        return Balance::findOrFail($id);
     }
 
     public function update(Request $request, string $id)
     {
+        $balance = Balance::find($id);
+
+
         $request->validate([
             'balance' => 'required',
         ]);
 
-        $balance=Balance::findOrFail($id);
-        $balance->update($request->all());
-        return redirect()->route('home');
+        $balance->balance += $request->balance;
+        $balance->save();
+
+        return $balance;
     }
 
     public function destroy(string $id)
     {
-        $balance = Balance::findOrFail($id);
+        $balance = Balance::query()->findOrFail($id);
         $balance->delete();
-
-        return redirect()->route('home')->with('success', 'Balance deleted successfully');
+        return $balance;
     }
 }

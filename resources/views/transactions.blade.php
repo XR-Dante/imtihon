@@ -43,14 +43,6 @@
             @endif
         @endforeach
 
-{{--        @foreach ($balance as $item)--}}
-{{--                <tr>--}}
-{{--                    <td style="color: green">+{{ $item->balance }}</td>--}}
-{{--                    <td style="color: green">{{ $item->type }}</td>--}}
-{{--                </tr>--}}
-{{--        @endforeach--}}
-
-
         </tbody>
     </table>
     <a href="{{ route('balances.index') }}" class="btn btn-secondary">Home</a>

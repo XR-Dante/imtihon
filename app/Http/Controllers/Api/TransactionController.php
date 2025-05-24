@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Transaction;
+use App\Http\Controllers\Controller;
 use App\Models\Balance;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,14 +12,19 @@ class TransactionController extends Controller
 {
     public function index(Request $request)
     {
+        $id      = $request->query('balance_id');
+        $status  = $request->query('status');
 
-        $status = $request->query('status');
         if($status && $status !== 'all'){
-            $transactions = Transaction::where(DB::raw('LOWER(status)'), strtolower($status))->get();
-//            $balance      = Balance::where(DB::raw('LOWER(type)'), strtolower($status))->get();
+
+            $transactions = Transaction::query()
+                ->where('user_id', auth()->id())
+                ->where(DB::raw('LOWER(status)'), strtolower($status))->get();
+
         }else {
-//            $balance      = Balance::all();
-            $transactions = Transaction::all();
+
+            $transactions = Transaction::query()->where('user_id', auth()->id())->get();
+
         }
         return view('transactions', compact('transactions',  'status'));
     }
@@ -32,7 +38,6 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request->all());
         $id = $request->get('balance_id');
         $validated = $request->validate([
             'balance_id' => 'required|exists:balances,id',
@@ -46,9 +51,6 @@ class TransactionController extends Controller
 
         $balance = Balance::find($id);
 
-        if(!$balance){
-            return "Hisobda mablag' yetarli emas";
-        }
 
         if($balance->balance <= $request->get('balance')){
             return "Hisobda mablag' yetarli emas";

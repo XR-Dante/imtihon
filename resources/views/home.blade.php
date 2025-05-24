@@ -1,4 +1,3 @@
-<!-- resources/views/home.blade.php -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,27 +9,24 @@
 <div class="container mt-4">
     <h2>Balance list</h2>
 
-
     <a href="{{ route('balances.create') }}" class="btn btn-primary mb-3">Create new card</a>
-
-
 
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Balance</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($balance as $item)
             <tr>
-                <td>{{ $item->id }}</td>
                 <td>{{ $item->balance }}</td>
                 <td>
                     <a href="{{ route('balances.edit', $item->id) }}" class="btn btn-warning btn-sm">Hisobni to'ldirish</a>
                     <a href="{{ route('transactions.create') }}?balance_id={{ $item->id }}" class="btn btn-warning btn-sm">Shopping</a>
-                    <a href="{{ route('transactions.index') }}?user_id={{ $item->id }}" class="btn btn-warning btn-sm">Purchase receipt</a>
+
+                    <a href="{{ route('transactions.index') }}?balance_id={{ $item->id }}" class="btn btn-warning btn-sm">Purchase receipt</a>
+
                     <form action="{{ route('balances.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')

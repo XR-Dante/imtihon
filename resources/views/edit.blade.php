@@ -1,4 +1,3 @@
-<!-- resources/views/edit.blade.php -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +14,7 @@
         @method('PUT')
         <div class="mb-3">
             <label for="balance" class="form-label">Balans</label>
-            <input type="number" step="0.001" class="form-control" id="balance" name="balance" value="{{ $balance->balance }}" required>
+            <input type="number" step="0.001" class="form-control" id="balance" name="balance"  required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{{ route('balances.index') }}" class="btn btn-secondary">Back</a>
