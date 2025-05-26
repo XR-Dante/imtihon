@@ -10,6 +10,8 @@
     <h2>Balance list</h2>
 
     <a href="{{ route('balances.create') }}" class="btn btn-primary mb-3">Create new card</a>
+{{--    <a href="{{ route('send_code_email.index') }}" class="btn btn-primary mb-3">Email</a>--}}
+
 
     <table class="table table-bordered">
         <thead>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\BalancesController;
+use App\Http\Controllers\Web\EmailVerificationController;
 use App\Http\Controllers\Web\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +22,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::resource('send_code_email', EmailVerificationController::class);
+
 Route::middleware('auth')->group(function () {
     Route::get('/home', [BalancesController::class, 'index'])->name('home');
     Route::resource('balances', BalancesController::class);
     Route::resource('transactions', TransactionController::class);
 });
+

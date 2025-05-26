@@ -39,7 +39,9 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+
         <div class="flex items-center justify-end mt-4">
+
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
@@ -50,3 +52,15 @@
         </div>
     </form>
 </x-guest-layout>
+
+{{--<div style="display: flex; justify-content: space-between; align-items: center;">--}}
+{{--    <a href="{{ route('send_code_email.index') }}" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 0.25rem;">Email</a>--}}
+
+{{--    <a href="{{ route('login') }}" style="text-decoration: underline; font-size: 0.875rem; color: #4b5563;">--}}
+{{--        Already registered?--}}
+{{--    </a>--}}
+
+{{--    <button type="submit" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.25rem; cursor: pointer;">--}}
+{{--        Register--}}
+{{--    </button>--}}
+{{--</div>--}}
