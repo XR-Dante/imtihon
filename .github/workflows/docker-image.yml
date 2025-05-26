@@ -18,13 +18,13 @@ jobs:
         run : |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600~/.ssh/id_rsa
-          echo -e "HOST *\n\tStrictHostKeyChecking no\n" >> ~/ssh/config
+          chmod 600 ~/.ssh/id_rsa
+          echo -e "HOST *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
       - name: Deploy via SSH
         run : |
-          ssh gcloud compute ssh instance-20250511-114242 --zone=us-central1-c << 'EOF'
-            cd cd /home/xolbekhayitov005/expence_trecker/imtihon
+          ssh -i ~/.ssh/id_rsa xolbekhayitov005@<35.222.227.169> << 'EOF'
+            cd /home/xolbekhayitov005/expence_trecker/imtihon
             git pull origin main
             docker exec content-app composer install --no-interaction --prefer-dist --optimize-autoloader
             docker exec content-app php artisan config:clear
