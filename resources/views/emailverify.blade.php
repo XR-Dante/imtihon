@@ -14,6 +14,7 @@
 {{--    @csrf--}}
 {{--    <input type="email" name="email" placeholder="Enter email:" required>--}}
 {{--    <button type="submit">📧Kodni olish</button>--}}
+
 {{--</form>--}}
 
 </body>
