@@ -13,7 +13,7 @@ class TransactionService extends Controller
 
     public function index(Request $request)
     {
-        $id      = $request->query('balance_id');
+//        $id      = $request->query('balance_id');
         $status  = $request->query('status');
 
         if($status && $status !== 'all'){

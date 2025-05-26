@@ -22,5 +22,17 @@ jobs:
           echo -e "HOST *\n\tStrictHostKeyChecking no\n" >> ~/ssh/config
 
       - name: Deploy via SSH
-        run: |
+        run : |
+          ssh gcloud compute ssh instance-20250511-114242 --zone=us-central1-c << 'EOF'
+            cd cd /home/xolbekhayitov005/expence_trecker/imtihon
+            git pull origin main
+            docker exec content-app composer install --no-interaction --prefer-dist --optimize-autoloader
+            docker exec content-app php artisan config:clear
+            docker exec content-app php artisan route:clear
+            docker exec content-app php artisan view:clear
+            docker exec content-app php artisan cache:clear
+            docker exec content-app php artisan config:cache
+            docker exec content-app php artisan optimize
+          EOF
+
 
