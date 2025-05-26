@@ -23,7 +23,7 @@ jobs:
 
       - name: Deploy via SSH
         run : |
-          ssh -i ~/.ssh/id_rsa user@instance-20250511-114242 << 'EOF'
+          ssh -i ~/.ssh/id_rsa xolbekhayitov005@35.222.227.169 << 'EOF'
             cd /home/xolbekhayitov005/expence_trecker/imtihon
             git pull origin main
             docker exec content-app composer install --no-interaction --prefer-dist --optimize-autoloader
